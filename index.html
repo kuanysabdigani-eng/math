@@ -7,14 +7,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Varela+Round&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --sky-blue: #a3d9ff;
-            --deep-blue: #004b87;
-            --glass-bg: rgba(255, 255, 255, 0.55);
-            --glass-border: rgba(255, 255, 255, 0.9);
-            --glass-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.25);
-            --accent-green: #2ecc71;
-            --accent-orange: #e67e22;
-            --accent-red: #e74c3c;
+            --glass-bg: rgba(255, 255, 255, 0.65);
+            --glass-border: rgba(255, 255, 255, 0.95);
+            --glass-shadow: 0 15px 35px rgba(0, 50, 100, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+            --accent-green: #27ae60;
+            --accent-orange: #d35400;
+            --accent-red: #c0392b;
         }
 
         * {
@@ -25,43 +23,44 @@
         }
 
         body {
-            background: linear-gradient(135deg, #52aaff 0%, #9be1ff 40%, #e6f7ff 100%);
+            /* Аутентичный фон: яркое небо сверху, зелено-луговой градиент снизу в стиле Frutiger Aero */
+            background: linear-gradient(to bottom, #1a82fb 0%, #6bc5ff 35%, #bCE3FF 60%, #43a047 100%);
             background-attachment: fixed;
-            color: #1a365d;
+            color: #0b2240;
             min-height: 100vh;
             overflow-x: hidden;
             position: relative;
         }
 
-        /* Classic Frutiger Aero Glowing Bubbles & Gloss */
+        /* Эффект сияющих лучей и бликов поверх */
         body::before {
             content: '';
             position: fixed;
-            top: -30%;
-            left: -30%;
-            width: 160%;
-            height: 160%;
-            background: radial-gradient(circle, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0) 65%);
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.2) 35%, transparent 60%);
             z-index: -1;
             pointer-events: none;
         }
 
         header {
-            background: linear-gradient(to bottom, rgba(255,255,255,0.85), rgba(255,255,255,0.4));
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border-bottom: 2px solid rgba(255, 255, 255, 0.95);
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.9), rgba(200, 230, 255, 0.7));
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 3px solid rgba(255, 255, 255, 0.95);
             padding: 25px 20px;
             text-align: center;
-            box-shadow: 0 6px 25px rgba(0, 75, 135, 0.15);
+            box-shadow: 0 8px 25px rgba(0, 50, 120, 0.2);
         }
 
         header h1 {
             font-family: 'Varela Round', sans-serif;
-            font-size: 2.5rem;
-            color: #003a6c;
-            text-shadow: 0 2px 5px rgba(255, 255, 255, 0.9);
-            background: linear-gradient(to bottom, #ffffff, #2884ff);
+            font-size: 2.4rem;
+            color: #003366;
+            text-shadow: 0 2px 4px rgba(255, 255, 255, 0.9);
+            background: linear-gradient(to bottom, #ffffff 20%, #0055ff 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             filter: drop-shadow(0 2px 2px rgba(0,0,0,0.15));
@@ -69,10 +68,10 @@
 
         header p {
             font-size: 1.05rem;
-            color: #004b87;
-            font-weight: 600;
-            margin-top: 8px;
-            text-shadow: 0 1px 2px rgba(255,255,255,0.8);
+            color: #004080;
+            font-weight: 700;
+            margin-top: 6px;
+            text-shadow: 0 1px 1px rgba(255, 255, 255, 0.8);
         }
 
         .container {
@@ -81,11 +80,11 @@
             padding: 0 20px;
         }
 
-        /* Ultimate Glassmorphism Cards */
+        /* Глянцевые стекломорфные карточки */
         .glass-card {
             background: var(--glass-bg);
-            backdrop-filter: blur(18px);
-            -webkit-backdrop-filter: blur(18px);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             border-radius: 24px;
             border: 2px solid var(--glass-border);
             box-shadow: var(--glass-shadow);
@@ -95,28 +94,27 @@
             overflow: hidden;
         }
 
-        /* Glossy Reflection Highlight */
-        .glass-card::after {
+        /* Глянцевый блик сверху карточки */
+        .glass-card::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
-            height: 45%;
-            background: linear-gradient(to bottom, rgba(255,255,255,0.7), transparent);
+            height: 40%;
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.05));
             pointer-events: none;
             border-radius: 24px 24px 0 0;
         }
 
         h2, h3 {
-            color: #003a6c;
+            color: #003366;
             font-family: 'Varela Round', sans-serif;
             margin-bottom: 15px;
             position: relative;
             z-index: 1;
         }
 
-        /* Topic Selection Grid */
         .topics-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -126,40 +124,38 @@
         }
 
         .topic-btn {
-            background: linear-gradient(to bottom, rgba(255,255,255,0.95), rgba(210,235,255,0.8));
+            background: linear-gradient(to bottom, rgba(255,255,255,0.95) 0%, rgba(190,230,255,0.85) 50%, rgba(150,210,255,0.95) 100%);
             border: 2px solid #ffffff;
             border-radius: 16px;
-            padding: 18px 22px;
+            padding: 18px 20px;
             font-size: 1rem;
             font-weight: 700;
-            color: #004b87;
+            color: #003366;
             cursor: pointer;
-            box-shadow: 0 6px 20px rgba(0, 75, 135, 0.12);
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 6px 15px rgba(0, 50, 120, 0.2), inset 0 1px 0 rgba(255,255,255,1);
+            transition: all 0.25s ease;
             text-align: left;
             position: relative;
             overflow: hidden;
         }
 
         .topic-btn:hover {
-            background: linear-gradient(to bottom, rgba(255,255,255,1), rgba(150,210,255,0.95));
-            transform: translateY(-4px) scale(1.01);
-            box-shadow: 0 10px 25px rgba(0, 75, 135, 0.25);
-            border-color: #ffffff;
+            background: linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(130,200,255,1) 50%, rgba(100,180,255,1) 100%);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 22px rgba(0, 80, 180, 0.35), inset 0 1px 0 rgba(255,255,255,1);
         }
 
-        /* Glossy Action Buttons */
         .btn {
-            background: linear-gradient(to bottom, #4facfe 0%, #0066ff 100%);
+            background: linear-gradient(to bottom, #3399ff 0%, #0055ff 100%);
             border: 2px solid #ffffff;
             color: white;
             padding: 12px 26px;
             border-radius: 30px;
             font-weight: 700;
             cursor: pointer;
-            box-shadow: 0 6px 20px rgba(0, 110, 255, 0.4);
-            transition: all 0.25s ease;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.25);
+            box-shadow: 0 5px 15px rgba(0, 85, 255, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+            transition: all 0.2s ease;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
             display: inline-block;
             margin-top: 10px;
             position: relative;
@@ -167,19 +163,19 @@
         }
 
         .btn:hover {
-            transform: translateY(-2px) scale(1.03);
-            box-shadow: 0 8px 25px rgba(0, 110, 255, 0.6);
+            background: linear-gradient(to bottom, #4da6ff 0%, #0044cc 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 85, 255, 0.6);
         }
 
         .btn-secondary {
-            background: linear-gradient(to bottom, rgba(255,255,255,0.9), rgba(200,225,250,0.85));
-            color: #004b87;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.95), rgba(210,230,250,0.85));
+            color: #003366;
             border: 2px solid #ffffff;
-            box-shadow: 0 4px 15px rgba(0, 75, 135, 0.15);
+            box-shadow: 0 4px 12px rgba(0,50,120,0.15), inset 0 1px 0 rgba(255,255,255,1);
             text-shadow: none;
         }
 
-        /* Difficulty Selector Tabs */
         .difficulty-container {
             display: flex;
             gap: 12px;
@@ -193,17 +189,17 @@
             padding: 12px;
             border-radius: 14px;
             border: 2px solid rgba(255,255,255,0.9);
-            background: rgba(255,255,255,0.5);
+            background: rgba(255, 255, 255, 0.6);
             font-weight: 700;
-            color: #004b87;
+            color: #003366;
             cursor: pointer;
-            transition: all 0.3s;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            transition: all 0.25s;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,0.8);
         }
 
-        .diff-btn.active[data-diff="easy"] { background: var(--accent-green); color: white; border-color: #a9dfbf; box-shadow: 0 4px 15px rgba(46, 204, 113, 0.4); }
-        .diff-btn.active[data-diff="medium"] { background: var(--accent-orange); color: white; border-color: #f5b041; box-shadow: 0 4px 15px rgba(230, 126, 34, 0.4); }
-        .diff-btn.active[data-diff="hard"] { background: var(--accent-red); color: white; border-color: #f5b7b1; box-shadow: 0 4px 15px rgba(231, 76, 60, 0.4); }
+        .diff-btn.active[data-diff="easy"] { background: linear-gradient(to bottom, #2ecc71, #27ae60); color: white; border-color: #a9dfbf; box-shadow: 0 4px 15px rgba(46, 204, 113, 0.5); }
+        .diff-btn.active[data-diff="medium"] { background: linear-gradient(to bottom, #f39c12, #d35400); color: white; border-color: #f5b041; box-shadow: 0 4px 15px rgba(230, 126, 34, 0.5); }
+        .diff-btn.active[data-diff="hard"] { background: linear-gradient(to bottom, #e74c3c, #c0392b); color: white; border-color: #f5b7b1; box-shadow: 0 4px 15px rgba(231, 76, 60, 0.5); }
 
         .content-section {
             display: none;
@@ -216,12 +212,12 @@
         }
 
         .example-box, .question-box {
-            background: rgba(255, 255, 255, 0.7);
-            border: 1px solid rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.8);
+            border: 1.5px solid rgba(255, 255, 255, 0.95);
             border-radius: 16px;
             padding: 22px;
             margin-bottom: 18px;
-            box-shadow: inset 0 2px 6px rgba(255,255,255,0.9), 0 4px 15px rgba(0,75,135,0.05);
+            box-shadow: inset 0 2px 5px rgba(255,255,255,0.9), 0 5px 15px rgba(0,50,120,0.08);
         }
 
         .options-grid {
@@ -232,32 +228,32 @@
         }
 
         .option-btn {
-            background: rgba(255, 255, 255, 0.85);
-            border: 2px solid rgba(255, 255, 255, 0.95);
+            background: linear-gradient(to bottom, rgba(255,255,255,0.95), rgba(230,242,255,0.9));
+            border: 2px solid rgba(255, 255, 255, 1);
             padding: 14px;
             border-radius: 12px;
             cursor: pointer;
-            font-weight: 600;
-            color: #004b87;
+            font-weight: 700;
+            color: #003366;
             text-align: left;
             transition: all 0.2s;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.04);
+            box-shadow: 0 3px 10px rgba(0,50,120,0.08), inset 0 1px 0 rgba(255,255,255,1);
         }
 
         .option-btn:hover {
-            background: rgba(255, 255, 255, 1);
-            border-color: #0077ff;
+            background: linear-gradient(to bottom, #ffffff, #cce6ff);
+            border-color: #0066ff;
             transform: translateY(-2px);
         }
 
         .option-btn.correct {
-            background: var(--accent-green) !important;
+            background: linear-gradient(to bottom, #2ecc71, #27ae60) !important;
             color: white !important;
             border-color: #27ae60 !important;
         }
 
         .option-btn.incorrect {
-            background: var(--accent-red) !important;
+            background: linear-gradient(to bottom, #e74c3c, #c0392b) !important;
             color: white !important;
             border-color: #c0392b !important;
         }
@@ -279,12 +275,12 @@
 
         .progress-indicator {
             font-weight: 700;
-            color: #003a6c;
-            background: rgba(255,255,255,0.7);
+            color: #003366;
+            background: rgba(255,255,255,0.85);
             padding: 10px 18px;
             border-radius: 20px;
-            border: 1px solid white;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            border: 1.5px solid white;
+            box-shadow: 0 4px 12px rgba(0,50,120,0.1), inset 0 1px 0 white;
             display: inline-block;
         }
     </style>
@@ -297,30 +293,25 @@
     </header>
 
     <div class="container">
-        <!-- Main Menu / Topic Selection -->
         <div class="glass-card" id="menu-card">
             <h2>Выберите раздел для подготовки</h2>
             <div class="topics-grid" id="topics-container"></div>
         </div>
 
-        <!-- Workspace Card -->
         <div class="glass-card content-section" id="workspace-card">
             <button class="btn btn-secondary" onclick="backToMenu()" style="margin-bottom: 20px;">← Назад к меню</button>
             <h2 id="current-topic-title">Название темы</h2>
 
-            <!-- Mode Switcher Tabs -->
             <div class="difficulty-container" style="margin-top: 15px;">
                 <button class="diff-btn active" id="tab-examples" onclick="switchTab('examples')">✨ 5 Разбранных примеров</button>
                 <button class="diff-btn" id="tab-trainer" onclick="switchTab('trainer')">🚀 Интерактивный тренажер (30 задач)</button>
             </div>
 
-            <!-- Examples Section -->
             <div id="section-examples" class="content-section active">
                 <h3>Пошаговые образцы решения</h3>
                 <div id="examples-container"></div>
             </div>
 
-            <!-- Trainer Section -->
             <div id="section-trainer" class="content-section">
                 <div class="difficulty-container">
                     <button class="diff-btn active" data-diff="easy" onclick="setDifficulty('easy')">Легкие (10)</button>
@@ -348,11 +339,11 @@
             eq: {
                 title: "Уравнения и неравенства (показательные, логарифмические, тригонометрические)",
                 examples: [
-                    { q: "Решите уравнение: $2^{x+1} = 8$", s: "Представим $8$ как $2^3$. Получаем: $x+1 = 3 \\implies x = 2$." },
-                    { q: "Логарифмическое уравнение: $\\log_2(x-1) = 3$", s: "По определению логарифма: $x-1 = 2^3 = 8 \\implies x = 9$." },
-                    { q: "Тригонометрическое уравнение: $\\sin x = 0$", s: "Частное решение для синуса: $x = \\pi k, k \\in \\mathbb{Z}$." },
-                    { q: "Показательное неравенство: $3^{x} \\le 27$", s: "Так как $27 = 3^3$, получаем: $x \\le 3$." },
-                    { q: "Логарифмическое неравенство: $\\log_3 x > 2$", s: "Потенцируем с учетом ОДЗ ($x>0$): $x > 3^2 \\implies x > 9$." }
+                    { q: "Решите уравнение: 2^(x+1) = 8", s: "Представим 8 как 2³. Получаем: x + 1 = 3  ⇒  x = 2." },
+                    { q: "Логарифмическое уравнение: log₂(x-1) = 3", s: "По определению логарифма: x - 1 = 2³ = 8  ⇒  x = 9." },
+                    { q: "Тригонометрическое уравнение: sin x = 0", s: "Частное решение для синуса: x = πk, где k — целое число." },
+                    { q: "Показательное неравенство: 3^x ≤ 27", s: "Так как 27 = 3³, получаем: x ≤ 3." },
+                    { q: "Логарифмическое неравенство: log₃(x) > 2", s: "Потенцируем с учетом ОДЗ (x > 0): x > 3²  ⇒  x > 9." }
                 ],
                 trainer: {
                     easy: generateQuestions("Уравнения/Неравенства", "Легкий", 10),
@@ -363,11 +354,11 @@
             deriv: {
                 title: "Производная (экстремумы, касательные)",
                 examples: [
-                    { q: "Найдите производную функции: $f(x) = x^3 - 3x^2$", s: "Используя формулу степени, получаем: $f'(x) = 3x^2 - 6x$." },
-                    { q: "Найдите критическую точку: $f(x) = x^2 - 4x + 3$", s: "Приравняем производную к нулю: $2x - 4 = 0 \\implies x = 2$." },
-                    { q: "Правило произведения: $(uv)' =", s: "Формула производной произведения: $u'v + uv'$." },
-                    { q: "Производная константы: $(15)' =", s: "Производная любого постоянного числа равна нулю: $0$." },
-                    { q: "Геометрический смысл производной:", s: "Значение производной в точке равно угловому коэффициенту касательной: $k = f'(x_0)$." }
+                    { q: "Найдите производную функции: f(x) = x³ - 3x²", s: "Используя формулу степени, получаем: f'(x) = 3x² - 6x." },
+                    { q: "Найдите критическую точку: f(x) = x² - 4x + 3", s: "Приравняем производную к нулю: 2x - 4 = 0  ⇒  x = 2." },
+                    { q: "Правило произведения: (u * v)' =", s: "Формула производной произведения: u' * v + u * v'." },
+                    { q: "Производная константы: (15)' =", s: "Производная любого постоянного числа равна нулю: 0." },
+                    { q: "Геометрический смысл производной:", s: "Значение производной в точке равно угловому коэффициенту касательной: k = f'(x₀)." }
                 ],
                 trainer: {
                     easy: generateQuestions("Производная", "Легкий", 10),
@@ -378,11 +369,11 @@
             prog: {
                 title: "Прогрессии (арифметическая и геометрическая)",
                 examples: [
-                    { q: "Арифметическая прогрессия: $a_1 = 2, d = 3$. Найдите $a_4$.", s: "Формула $a_n = a_1 + (n-1)d \\implies a_4 = 2 + 3(3) = 11$." },
-                    { q: "Геометрическая прогрессия: $b_1 = 3, q = 2$. Найдите $b_3$.", s: "Формула $b_n = b_1 \\cdot q^{n-1} \\implies b_3 = 3 \\cdot 2^2 = 12$." },
-                    { q: "Сумма первых 5 членов арифметической прогрессии: $1, 2, 3, 4, 5$", s: "По формуле суммы: $S_5 = \\frac{1+5}{2} \\cdot 5 = 15$." },
-                    { q: "Разность арифм. прогрессии: $a_1=5, a_3=11$. Найдите $d$.", s: "$a_3 = a_1 + 2d \\implies 11 = 5 + 2d \\implies d = 3$." },
-                    { q: "Сумма бесконечно убывающей геом. прогрессии: $b_1=4, q=0.5$", s: "Формула $S = \\frac{b_1}{1-q} = \\frac{4}{1-0.5} = 8$." }
+                    { q: "Арифметическая прогрессия: a₁ = 2, d = 3. Найдите a₄.", s: "Формула aₙ = a₁ + (n-1)d  ⇒  a₄ = 2 + 3 * 3 = 11." },
+                    { q: "Геометрическая прогрессия: b₁ = 3, q = 2. Найдите b₃.", s: "Формула bₙ = b₁ * qⁿ⁻¹  ⇒  b₃ = 3 * 2² = 12." },
+                    { q: "Сумма первых 5 членов арифм. прогрессии: 1, 2, 3, 4, 5", s: "По формуле суммы: S₅ = ((1 + 5) / 2) * 5 = 15." },
+                    { q: "Разность арифм. прогрессии: a₁ = 5, a₃ = 11. Найдите d.", s: "a₃ = a₁ + 2d  ⇒  11 = 5 + 2d  ⇒  d = 3." },
+                    { q: "Сумма бесконечно убывающей геом. прогрессии: b₁ = 4, q = 0.5", s: "Формула S = b₁ / (1 - q) = 4 / (1 - 0.5) = 8." }
                 ],
                 trainer: {
                     easy: generateQuestions("Прогрессии", "Легкий", 10),
@@ -393,11 +384,11 @@
             geom: {
                 title: "Базовые формулы геометрии (площади, объемы тел вращения и многогранников)",
                 examples: [
-                    { q: "Площадь квадрата со стороной $a = 5$ см.", s: "Формула $S = a^2 = 5^2 = 25$ см²." },
-                    { q: "Длина окружности с радиусом $r = 3$ см.", s: "Формула $C = 2\\pi r = 6\\pi$ см." },
-                    { q: "Объем куба с ребром $a = 4$ см.", s: "Формула $V = a^3 = 4^3 = 64$ см³." },
-                    { q: "Объем цилиндра: радиус $r=2$, высота уравнения $h=5$.", s: "Формула $V = \\pi r^2 h = \\pi \\cdot 4 \\cdot 5 = 20\\pi$." },
-                    { q: "Площадь треугольника: основание $10$, высота $6$.", s: "Формула $S = \\frac{1}{2} \\cdot \\text{осн} \\cdot \\text{выс} = 30$." }
+                    { q: "Площадь квадрата со стороной a = 5 см.", s: "Формула S = a² = 5² = 25 см²." },
+                    { q: "Длина окружности с радиусом r = 3 см.", s: "Формула C = 2πr = 6π см." },
+                    { q: "Объем куба с ребром a = 4 см.", s: "Формула V = a³ = 4³ = 64 см³." },
+                    { q: "Объем цилиндра: радиус r = 2, высота h = 5.", s: "Формула V = π * r² * h = π * 4 * 5 = 20π." },
+                    { q: "Площадь треугольника: основание 10, высота 6.", s: "Формула S = 0.5 * основание * высота = 30." }
                 ],
                 trainer: {
                     easy: generateQuestions("Геометрия", "Легкий", 10),
@@ -408,11 +399,11 @@
             motion: {
                 title: "Задачи на движение (скорость, время, расстояние) и работу",
                 examples: [
-                    { q: "Автомобиль ехал 3 часа со скоростью 60 км/ч. Какое расстояние он проехал?", s: "Формула $S = v \\cdot t = 60 \\cdot 3 = 180$ км." },
-                    { q: "Пешеход прошел 12 км за 4 часа. Найдите его скорость.", s: "Формула $v = S / t = 12 / 4 = 3$ км/ч." },
-                    { q: "Совместная работа: Первый рабочий выполняет заказ за 6 дней, второй за 3 дня. За сколько дней они выполнят работу вместе?", s: "Производительности суммируются: $\\frac{1}{6} + \\frac{1}{3} = \\frac{1}{2}$, то есть за 2 дня." },
-                    { q: "Движение навстречу: Два объекта сближаются со скоростями 50 и 60 км/ч в течение 2 часов. Расстояние?", s: "$S = (50+60) \\cdot 2 = 220$ км." },
-                    { q: "Скорость по течению реки: Собственная скорость катера 15 км/ч, скорость течения 3 км/ч.", s: "Скорость по течению равна сумме: $15 + 3 = 18$ км/ч." }
+                    { q: "Автомобиль ехал 3 часа со скоростью 60 км/ч. Какое расстояние он проехал?", s: "Формула S = v * t = 60 * 3 = 180 км." },
+                    { q: "Пешеход прошел 12 км за 4 часа. Найдите его скорость.", s: "Формула v = S / t = 12 / 4 = 3 км/ч." },
+                    { q: "Совместная работа: Первый за 6 дней, второй за 3 дня. За сколько дней выполнят вместе?", s: "Производительности суммируются: 1/6 + 1/3 = 1/2, то есть за 2 дня." },
+                    { q: "Движение навстречу: Скорости 50 и 60 км/ч, время 2 часа. Расстояние?", s: "S = (50 + 60) * 2 = 220 км." },
+                    { q: "Скорость по течению реки: Собственная 15 км/ч, течение 3 км/ч.", s: "Скорость по течению равна сумме: 15 + 3 = 18 км/ч." }
                 ],
                 trainer: {
                     easy: generateQuestions("Движение и работа", "Легкий", 10),
@@ -423,11 +414,11 @@
             finance: {
                 title: "Проценты, сплавы, скидки и финансовые расчеты",
                 examples: [
-                    { q: "Найдите 15% от числа 200.", s: "$200 \\cdot 0.15 = 30$." },
-                    { q: "Товар стоил 5000 тенге, сделали скидку 20%. Какова новая цена?", s: "$5000 \\cdot (1 - 0.2) = 4000$ тенге." },
-                    { q: "В банк положили 100 000 тенге под 10% годовых. Сумма через год?", s: "$100 000 \\cdot 1.1 = 110 000$ тенге." },
-                    { q: "Сколько соли содержится в 20 кг 10%-го раствора?", s: "$20 \\cdot 0.1 = 2$ кг." },
-                    { q: "Цена товара выросла на 20% и составила 12000 тенге. Найдите первоначальную цену.", s: "$x \\cdot 1.2 = 12000 \\implies x = 10000$ тенге." }
+                    { q: "Найдите 15% от числа 200.", s: "200 * 0.15 = 30." },
+                    { q: "Товар стоил 5000 тенге, скидка 20%. Новая цена?", s: "5000 * (1 - 0.2) = 4000 тенге." },
+                    { q: "В банк положили 100 000 тенге под 10% годовых. Сумма через год?", s: "100 000 * 1.1 = 110 000 тенге." },
+                    { q: "Сколько соли содержится в 20 кг 10%-го раствора?", s: "20 * 0.1 = 2 кг." },
+                    { q: "Цена товара выросла на 20% и составила 12000 тенге. Первоначальная цена?", s: "x * 1.2 = 12000  ⇒  x = 10000 тенге." }
                 ],
                 trainer: {
                     easy: generateQuestions("Проценты и сплавы", "Легкий", 10),
@@ -438,11 +429,11 @@
             stat: {
                 title: "Статистика (мода, медиана, среднее арифметическое)",
                 examples: [
-                    { q: "Найдите среднее арифметическое чисел: 2, 4, 6, 8, 10", s: "Сумма деленная на количество: $30 / 5 = 6$." },
+                    { q: "Найдите среднее арифметическое чисел: 2, 4, 6, 8, 10", s: "Сумма, деленная на количество: 30 / 5 = 6." },
                     { q: "Найдите моду ряда чисел: 3, 5, 5, 7, 8, 5, 9", s: "Число, которое встречается чаще всего: 5." },
                     { q: "Найдите медиану упорядоченного ряда: 1, 3, 5, 7, 9", s: "Число ровно посередине: 5." },
-                    { q: "Размах ряда чисел: 2, 10, 15, 4", s: "Разница между наибольшим и наименьшим: $15 - 2 = 13$." },
-                    { q: "Медиана для четного числа элементов: 2, 4, 6, 8", s: "Среднее арифметическое двух средних: $(4+6)/2 = 5$." }
+                    { q: "Размах ряда чисел: 2, 10, 15, 4", s: "Разница между наибольшим и наименьшим: 15 - 2 = 13." },
+                    { q: "Медиана для четного числа элементов: 2, 4, 6, 8", s: "Среднее арифметическое двух средних: (4 + 6) / 2 = 5." }
                 ],
                 trainer: {
                     easy: generateQuestions("Статистика", "Легкий", 10),
@@ -453,11 +444,11 @@
             comb: {
                 title: "Комбинаторика и базовые логические задачи",
                 examples: [
-                    { q: "Сколькими способами можно расставить 3 различные книги на полке?", s: "Факториал числа: $3! = 1 \\cdot 2 \\cdot 3 = 6$ способов." },
-                    { q: "Сколькими способами из 5 человек можно выбрать команду из 2?", s: "Формула сочетаний: $C_5^2 = \\frac{5 \\cdot 4}{1 \\cdot 2} = 10$." },
-                    { q: "Логика: В классе 20 учеников играют в футбол, 15 в баскетбол, 5 играют в обе игры. Сколько всего?", s: "По формуле включений-исключений: $20 + 15 - 5 = 30$ учеников." },
-                    { q: "Сколько четырехзначных чисел можно составить из цифр 1, 2, 3, 4 (без повтора)?", s: "Перестановка 4 элементов: $4! = 24$." },
-                    { q: "Сколько существует двузначных чисел, составленных из нечетных цифр?", s: "На первой позиции 5 вариантов (1,3,5,7,9), на второй столько же: $5 \\cdot 5 = 25$." }
+                    { q: "Сколькими способами можно расставить 3 различные книги на полке?", s: "Факториал числа: 3! = 1 * 2 * 3 = 6 способов." },
+                    { q: "Сколькими способами из 5 человек можно выбрать команду из 2?", s: "Формула сочетаний: C(5,2) = (5 * 4) / (1 * 2) = 10." },
+                    { q: "Логика: 20 учеников играют в футбол, 15 в баскетбол, 5 в обе игры. Сколько всего?", s: "По формуле включений-исключений: 20 + 15 - 5 = 30 учеников." },
+                    { q: "Сколько четырехзначных чисел можно составить из цифр 1, 2, 3, 4 (без повтора)?", s: "Перестановка 4 элементов: 4! = 24." },
+                    { q: "Сколько существует двузначных чисел, составленных из нечетных цифр?", s: "5 вариантов на первой позиции и 5 на второй: 5 * 5 = 25." }
                 ],
                 trainer: {
                     easy: generateQuestions("Комбинаторика", "Легкий", 10),
@@ -467,20 +458,19 @@
             }
         };
 
-        // Generator for authentic-looking interactive training questions
         function generateQuestions(topicName, diffLevel, count) {
             let arr = [];
             for(let i = 1; i <= count; i++) {
                 arr.push({
-                    q: `Тема: [${topicName}] — Уровень: ${diffLevel} №${i}. Выберите правильный вариант ответа из предложенных:`,
+                    q: `Тема: [${topicName}] — Уровень: ${diffLevel} №${i}. Выберите правильный вариант ответа:`,
                     options: [
-                        `Верный ответ (${i})`,
+                        `Правильный ответ (${i})`,
                         `Ложный вариант A`,
                         `Ложный вариант B`,
                         `Ложный вариант C`
                     ],
                     correct: 0,
-                    explanation: `Подробный разбор решения: для получения верного ответа применяются базовые свойства, алгоритмы и формулы курса ЕНТ (#${i}).`
+                    explanation: `Разбор решения: для получения верного ответа применяются базовые свойства и алгоритмы ЕНТ (#${i}).`
                 });
             }
             return arr;
@@ -491,7 +481,6 @@
         let currentDiff = 'easy';
         let currentQuestionIndex = 0;
 
-        // Render main menu topics grid
         const topicsContainer = document.getElementById('topics-container');
         for (let key in topicsData) {
             let btn = document.createElement('button');
@@ -528,6 +517,7 @@
             let container = document.getElementById('examples-container');
             container.innerHTML = '';
             let examples = topicsData[currentTopicKey].examples;
+            examples.examples = examples; // fallback
             examples.forEach((ex, idx) => {
                 let div = document.createElement('div');
                 div.className = 'example-box';
